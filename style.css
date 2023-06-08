@@ -8,11 +8,32 @@ body {
   margin: 0;
   padding: 0;
   background-color: black;
-  color:aliceblue
+  color: white;
 }
 
 h1 {
   text-transform: uppercase;
   text-align: center;
   margin: 20px 0;
+}
+
+#form{
+  text-align: center;
+  margin-bottom: 5vh;
+}
+
+.gif-container{
+  background-color: rgb(178, 178, 228);
+  height: 60vh;
+  width: 80%;
+  margin: 0 auto;
+  display: grid;
+  overflow: scroll;
+  overflow-x: hidden;
+  grid-template-columns: auto auto auto;
+
+}
+
+.hidden{
+  display: none;
 }

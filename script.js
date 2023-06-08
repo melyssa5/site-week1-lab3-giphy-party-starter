@@ -1,5 +1,13 @@
 // Global Constants
-const apiKey = "MY_API_KEY"
+const apiKey = "65yLpjQXIk19oK97k8WWAt0pdJh2zfcM";
+const limit = 9;
+const rating = "g";
+const gifContainer = document.querySelector(".gif-container")
+const hiddenButton = document.querySelector(".hidden");
+const form = document.getElementById("form");
+
+let pageNumber = 0;
+
 
 /**
  * Update the DOM to display results from the Giphy API query.
@@ -9,7 +17,18 @@ const apiKey = "MY_API_KEY"
  *
  */
 function displayResults(results) {
-  // YOUR CODE HERE
+  results.forEach(result => {
+    let gif = generateGIF(result);
+    gifContainer.appendChild(gif);
+  })
+}
+
+function generateGIF(gifInfo) {
+  // create a img element with the gif link
+  let gifEl = document.createElement('img');
+  gifEl.classList.add('gif-visual');
+  gifEl.src = 'https://giphy.com/gifs/cat-shoe-3GRwYzxwdceaI';
+  return gifEl
 }
 
 /**
@@ -20,7 +39,11 @@ function displayResults(results) {
  *
  */
 async function getGiphyApiResults(searchTerm) {
-  // YOUR CODE HERE
+  const response = await fetch('http://api.giphy.com/v1/gifs/search?api_key=' + apiKey + '&q=' + searchTerm + '&limit=9&rating=g');
+  console.log(response)
+  const jsonResponse = await response.json();
+  console.log(jsonResponse.data)
+  return jsonResponse.data;
 }
 
 /**
@@ -30,7 +53,9 @@ async function getGiphyApiResults(searchTerm) {
  *
  */
 async function handleFormSubmit(event) {
-  // YOUR CODE HERE
+  event.preventDefault();
+
+
 }
 
 // searchForm.addEventListener("submit", handleFormSubmit)
@@ -46,7 +71,11 @@ async function handleShowMore(event) {
   // YOUR CODE HERE
 }
 
-window.onload = function () {
+window.onload = async function () {
   // YOUR CODE HERE
   // Add any event handlers here
+  //displayResults(await getGiphyApiResults('kitten'));
+  console.log(await getGiphyApiResults('kitten'))
+ 
 }
+
